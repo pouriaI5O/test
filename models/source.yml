@@ -19,10 +19,6 @@ sources:
           error_after: {count: 48, period: hour}
       - name: olist_products
         description: olist_products
-        loaded_at_field: product_id
-        freshness: 
-          warn_after: {count: 12, period: hour}
-          error_after: {count: 48, period: hour}
       - name: olist_order_items
         description: olist_order_items
         loaded_at_field: shipping_limit_date
