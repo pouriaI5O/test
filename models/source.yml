@@ -1,0 +1,27 @@
+version: 2
+
+sources: 
+  - name: public
+    description: A Redshift database olist_order_payments
+    database: stage
+    tables:
+      - name: olist_orders
+        description: olist_orders
+        loaded_at_field: order_purchase_timestamp
+        freshness: 
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 48, period: hour}
+      - name: olist_order_payments
+        description: olist_order_payments
+        loaded_at_field: order_id
+        freshness: 
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 48, period: hour}
+      - name: olist_products
+        description: olist_products
+      - name: olist_order_items
+        description: olist_order_items
+        loaded_at_field: shipping_limit_date
+        freshness: 
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 48, period: hour}
