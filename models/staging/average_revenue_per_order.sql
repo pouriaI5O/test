@@ -8,5 +8,5 @@ WITH average_revenue_per_order AS (
   GROUP BY 1
 )
 SELECT *
-FROM average_revenue_per_order;
+FROM average_revenue_per_order
 

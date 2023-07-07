@@ -1,6 +1,6 @@
 version: 2
 
-sources: 
+sources:
   - name: public
     description: A Redshift database olist_order_payments
     database: stage
@@ -8,20 +8,60 @@ sources:
       - name: olist_orders
         description: olist_orders
         loaded_at_field: order_purchase_timestamp
-        freshness: 
-          warn_after: {count: 12, period: hour}
-          error_after: {count: 48, period: hour}
+        freshness:
+          warn_after: { count: 12, period: hour }
+          error_after: { count: 48, period: hour }
+        tests:
+          - not_null_columns:
+              columns: [order_id, customer_id, order_status]
+              severity: warn
+
       - name: olist_order_payments
         description: olist_order_payments
         loaded_at_field: order_id
-        freshness: 
-          warn_after: {count: 12, period: hour}
-          error_after: {count: 48, period: hour}
+        freshness:
+          warn_after: { count: 12, period: hour }
+          error_after: { count: 48, period: hour }
+        tests:
+          - not_null_columns:
+              columns: [order_id, payment_type, payment_value]
+              severity: warn
+
       - name: olist_products
         description: olist_products
+        tests:
+          - not_null_columns:
+              columns: [product_id, product_category_name]
+              severity: warn
+
       - name: olist_order_items
         description: olist_order_items
         loaded_at_field: shipping_limit_date
-        freshness: 
-          warn_after: {count: 12, period: hour}
-          error_after: {count: 48, period: hour}
+        freshness:
+          warn_after: { count: 12, period: hour }
+          error_after: { count: 48, period: hour }
+        tests:
+          - not_null_columns:
+              columns: [order_id, product_id, seller_id]
+              severity: warn
+
+      - name: olist_geolocation
+        description: olist_geolocation
+        tests:
+          - not_null_columns:
+              columns: [geolocation_zip_code_prefix, geolocation_city]
+              severity: warn
+
+      - name: olist_order_reviews
+        description: olist_order_reviews
+        tests:
+          - not_null_columns:
+              columns: [review_id, order_id, review_score]
+              severity: warn
+
+      - name: olist_sellers
+        description: olist_sellers
+        tests:
+          - not_null_columns:
+              columns: [seller_id, seller_zip_code_prefix, seller_city]
+              severity: warn

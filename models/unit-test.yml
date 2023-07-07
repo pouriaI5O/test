@@ -1,0 +1,26 @@
+version: 2
+
+tests:
+  - name: total_orders
+    model: my_new_project.total_orders
+    tags: [unit]
+
+  - name: total_customers
+    model: my_new_project.total_customers
+    tags: [unit]
+
+  - name: total_revenue
+    model: my_new_project.total_revenue
+    tags: [unit]
+
+  - name: average_revenue_per_order
+    model: my_new_project.average_revenue_per_order
+    tags: [unit]
+
+  - name: top_3_product_categories_by_revenue
+    model: my_new_project.top_3_product_categories_by_revenue
+    tags: [unit]
+
+  - name: top_3_product_categories_revenue_percentage
+    model: my_new_project.top_3_product_categories_revenue_percentage
+    tags: [unit]
