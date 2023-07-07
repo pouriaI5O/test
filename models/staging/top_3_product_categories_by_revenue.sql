@@ -24,4 +24,4 @@ SELECT order_purchase_date,
        is_faulty
 FROM ranked_categories
 WHERE rank <= 3
-GROUP BY order_purchase_date, is_faulty;
+GROUP BY order_purchase_date, is_faulty
